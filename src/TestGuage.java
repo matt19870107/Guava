@@ -7,13 +7,14 @@ import java.util.Set;
 import org.junit.Test;
 
 import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 import com.google.common.primitives.Ints;
 
 public class TestGuage {
 	
-	@Test
+	//@Test
 	public void testOption() {
 		Optional<Integer> possible=Optional.of(6);
         Optional<Integer> absentOpt=Optional.absent();
@@ -46,6 +47,36 @@ public class TestGuage {
             System.out.println("NoNullableList asSet:"+NoNullableList.asSet());
         }
 	}
+	
+	@Test
+	public void testTraditionalPreconditions() {
+		 int[] intArray = {1, 2, 3, 4, 5, 6};
+		 testPreconditions(true, intArray, 6);
+		 testTraditionPreconditions(true, intArray, 6);
+	}
+	
+
+	 private void testTraditionPreconditions(boolean preCondition, int[] array, int position) {
+	        if (!preCondition) {
+	            throw new IllegalArgumentException("preCondition not allow!!");
+	        }
+	        if (array == null) {
+	            throw new NullPointerException("array is null!!");
+	        }
+	        if (array.length == 0) {
+	            throw new IllegalArgumentException("array length is 0!!");
+	        }
+	        if (position > array.length || position < 0) {
+	            throw new ArrayIndexOutOfBoundsException("position error!!");
+	        }
+	 }
+	
+	private void testPreconditions(boolean preCondition, int[] array, int position) {
+	        Preconditions.checkArgument(preCondition);
+	        Preconditions.checkNotNull(array);
+	        Preconditions.checkPositionIndex(position, array.length, "position error!");
+	 }
+
 	
 	//@Test
 	public void testOrdering() {
