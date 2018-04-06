@@ -48,7 +48,7 @@ public class TestGuage {
         }
 	}
 	
-	@Test
+	//@Test
 	public void testTraditionalPreconditions() {
 		 int[] intArray = {1, 2, 3, 4, 5, 6};
 		 testPreconditions(true, intArray, 6);
@@ -92,7 +92,6 @@ public class TestGuage {
 
 		Ordering<String> naturalOrdering = Ordering.natural();
 		Ordering<Object> usingToStringOrdering = Ordering.usingToString();
-		Ordering<Object> arbitraryOrdering = Ordering.arbitrary();
 		Ordering<String> byLengthOrdering = new Ordering<String>() {
 			@Override
 			public int compare(String left, String right) {
@@ -101,7 +100,31 @@ public class TestGuage {
 		};
 		System.out.println("naturalOrdering:" + naturalOrdering.sortedCopy(list));
 		System.out.println("usingToStringOrdering:" + usingToStringOrdering.sortedCopy(list));
-		System.out.println("arbitraryOrdering:" + arbitraryOrdering.sortedCopy(list));
 		System.out.println("byLengthOrdering:" + byLengthOrdering.sortedCopy(list));
 	}
+	
+	//@Test
+	/*public void testAdvanceOrdering() {
+		List<People> list = Lists.newArrayList();
+		list.add("peida");
+		list.add("jerry");
+		list.add("harry");
+		list.add("eva");
+		list.add("jhon");
+		list.add("neron");
+
+		System.out.println("list:" + list);
+
+		Ordering<String> naturalOrdering = Ordering.natural();
+		Ordering<Object> usingToStringOrdering = Ordering.usingToString();
+		Ordering<String> byLengthOrdering = new Ordering<String>() {
+			@Override
+			public int compare(String left, String right) {
+				return Ints.compare(left.length(), right.length());
+			}
+		};
+		System.out.println("naturalOrdering:" + naturalOrdering.sortedCopy(list));
+		System.out.println("usingToStringOrdering:" + usingToStringOrdering.sortedCopy(list));
+		System.out.println("byLengthOrdering:" + byLengthOrdering.sortedCopy(list));
+	}*/
 }
