@@ -29,7 +29,19 @@ public class People{
         return this.name.equals(((People)obj).name) && this.age== ((People)obj).age;
     }
     
-    public static void main(String[] args) {
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public static void main(String[] args) {
     	 
         People p1 = new People("Jack", 12);
         System.out.println(p1.hashCode());

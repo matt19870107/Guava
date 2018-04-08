@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -6,8 +8,10 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 import com.google.common.primitives.Ints;
@@ -103,28 +107,46 @@ public class TestGuage {
 		System.out.println("byLengthOrdering:" + byLengthOrdering.sortedCopy(list));
 	}
 	
-	//@Test
-	/*public void testAdvanceOrdering() {
-		List<People> list = Lists.newArrayList();
+	@Test
+	public void testAdvanceOrdering() {
+		List<String> list = Lists.newArrayList();
 		list.add("peida");
+		list.add(null);
 		list.add("jerry");
 		list.add("harry");
 		list.add("eva");
 		list.add("jhon");
 		list.add("neron");
+		
+		List<People> peopleList = Lists.newArrayList();
+		peopleList.add(new People("peida",24));
+		peopleList.add(new People("harry",28));
+		peopleList.add(new People("jhon",18));
+		peopleList.add(new People("harry",32));
+		peopleList.add(new People("eva",18));
+		peopleList.add(new People("harry",26));
 
 		System.out.println("list:" + list);
 
 		Ordering<String> naturalOrdering = Ordering.natural();
-		Ordering<Object> usingToStringOrdering = Ordering.usingToString();
-		Ordering<String> byLengthOrdering = new Ordering<String>() {
-			@Override
-			public int compare(String left, String right) {
-				return Ints.compare(left.length(), right.length());
+		Ordering<People> compoundOrdering = new Ordering<People>() {
+			  public int compare(People left, People right) {
+				    return left.getName().compareTo(right.getName());
+			  }
+		}.compound(new Comparator<People>() {
+		    public int compare(People people1, People people2) {
+		        return people2.getAge() - people1.getAge();
+		    }
+		});
+		
+		Ordering<People> ordering = Ordering.natural().nullsFirst().reverse().onResultOf(new Function<People, String>() {
+			public String apply(People input) {
+				return String.valueOf(input.getAge());
 			}
-		};
-		System.out.println("naturalOrdering:" + naturalOrdering.sortedCopy(list));
-		System.out.println("usingToStringOrdering:" + usingToStringOrdering.sortedCopy(list));
-		System.out.println("byLengthOrdering:" + byLengthOrdering.sortedCopy(list));
-	}*/
+			});
+		System.out.println("naturalOrdering:" + naturalOrdering.nullsLast().reverse().sortedCopy(list));
+		System.out.println("compoundOrdering:" + compoundOrdering.sortedCopy(peopleList));
+		System.out.println("onResultOf:" + ordering.sortedCopy(peopleList));
+	}
+	
 }
