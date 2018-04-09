@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
+import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
@@ -107,7 +109,7 @@ public class TestGuage {
 		System.out.println("byLengthOrdering:" + byLengthOrdering.sortedCopy(list));
 	}
 	
-	@Test
+	//@Test
 	public void testAdvanceOrdering() {
 		List<String> list = Lists.newArrayList();
 		list.add("peida");
@@ -125,6 +127,13 @@ public class TestGuage {
 		peopleList.add(new People("harry",32));
 		peopleList.add(new People("eva",18));
 		peopleList.add(new People("harry",26));
+		
+		List<Integer> listtest= Lists.newArrayList();
+        listtest.add(1);
+        listtest.add(2);
+        listtest.add(3);
+        listtest.add(3);
+	    Ordering<Integer> naturalIntReduceOrdering = Ordering.natural();
 
 		System.out.println("list:" + list);
 
@@ -148,6 +157,9 @@ public class TestGuage {
 		System.out.println("compoundOrdering:" + compoundOrdering.sortedCopy(peopleList));
 		System.out.println("onResultOf:" + ordering.sortedCopy(peopleList));
 		System.out.println("greatestOf:" + ordering.reverse().greatestOf(peopleList, 3));
+		System.out.println("min:" + ordering.min(peopleList));
+		System.out.println("isOrdered:" + naturalIntReduceOrdering.isOrdered(listtest));
+		System.out.println("isStrictlyOrdered:" + naturalIntReduceOrdering.isStrictlyOrdered(listtest));
 	}
 	
 }
