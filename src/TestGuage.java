@@ -147,6 +147,7 @@ public class TestGuage {
 		System.out.println("naturalOrdering:" + naturalOrdering.nullsLast().reverse().sortedCopy(list));
 		System.out.println("compoundOrdering:" + compoundOrdering.sortedCopy(peopleList));
 		System.out.println("onResultOf:" + ordering.sortedCopy(peopleList));
+		System.out.println("greatestOf:" + ordering.reverse().greatestOf(peopleList, 3));
 	}
 	
 }
