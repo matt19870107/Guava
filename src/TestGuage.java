@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import org.junit.Test;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
+import com.google.common.base.Splitter;
 import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -160,6 +162,18 @@ public class TestGuage {
 		System.out.println("min:" + ordering.min(peopleList));
 		System.out.println("isOrdered:" + naturalIntReduceOrdering.isOrdered(listtest));
 		System.out.println("isStrictlyOrdered:" + naturalIntReduceOrdering.isStrictlyOrdered(listtest));
+	}
+	
+	@Test
+	public void testSpliter(){
+		String  ss= ";a;;b;";
+		Iterable<String> s = Splitter.on(';')
+        .trimResults()
+        .omitEmptyStrings()
+        .limit(2)
+        .split(ss);
+		System.out.println(s.toString());
+
 	}
 	
 }
