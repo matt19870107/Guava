@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import com.google.common.base.CharMatcher;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
@@ -164,7 +165,7 @@ public class TestGuage {
 		System.out.println("isStrictlyOrdered:" + naturalIntReduceOrdering.isStrictlyOrdered(listtest));
 	}
 	
-	@Test
+	//@Test
 	public void testSpliter(){
 		String  ss= ";a;;b;";
 		Iterable<String> s = Splitter.on(';')
@@ -174,6 +175,37 @@ public class TestGuage {
         .split(ss);
 		System.out.println(s.toString());
 
+	}
+	
+	@Test
+	public void testCharMatcher() {
+        String removeFromResult = CharMatcher.isNot('a').removeFrom("abacd");  
+        System.out.println("removeForm:" + removeFromResult);  
+        String retainFormResult = CharMatcher.is('a').retainFrom("abacd");  
+        System.out.println("retainForm:" + retainFormResult);  
+        String replaceFormResult1 = CharMatcher.whitespace().replaceFrom("a bcd", 'f');  
+        System.out.println("replaceFrom_1:" + replaceFormResult1);  
+        String replaceFormResult2 = CharMatcher.digit().replaceFrom("a3bcd", "Three");  
+        System.out.println("replaceFrom_2:" + replaceFormResult2);  
+        String trimFromResult = CharMatcher.anyOf("ab").trimFrom("abacatabb");  
+        System.out.println("trimFrom:" + trimFromResult);  
+        String trimLeadingFromResult = CharMatcher.anyOf("ab").trimLeadingFrom("abacatabb");  
+        System.out.println("trimLeadingFrom:" + trimLeadingFromResult);  
+        String trimTrailingFromResult = CharMatcher.anyOf("ab").trimTrailingFrom("abacatabb");  
+        System.out.println("trimTrailingFrom:" + trimTrailingFromResult);  
+        String collapseFromResult = CharMatcher.anyOf("bre").collapseFrom("bookkeeper", '-');  
+        System.out.println("collapseFrom:" + collapseFromResult);  
+        String trimAndCollapseFromResult = CharMatcher.anyOf("bre").trimAndCollapseFrom("bookkeeper", '-');  
+        System.out.println("trimAndCollapseFrom:" + trimAndCollapseFromResult);  
+        boolean matchesAllOfResult = CharMatcher.javaUpperCase().matchesAnyOf("hCd");  
+        System.out.println("matchesAnyOf:" + matchesAllOfResult);  
+        String orResult = CharMatcher.javaDigit().or(CharMatcher.javaUpperCase()).retainFrom("dd59cF");  
+        System.out.println("or:" + orResult);  
+        String negateResult = CharMatcher.javaDigit().negate().retainFrom("dd59cF");  
+        System.out.println("negate:" + negateResult);  
+        boolean matchesAllOf = CharMatcher.anyOf("adddddbccc").matchesAllOf("adddddbccc");
+        System.out.println("matchesAllOf:" + matchesAllOf);
+		
 	}
 	
 }
