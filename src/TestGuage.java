@@ -16,9 +16,12 @@ import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Splitter;
 import com.google.common.base.Throwables;
+import com.google.common.collect.HashMultiset;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Multiset;
+import com.google.common.collect.Multiset.Entry;
 import com.google.common.collect.Ordering;
 import com.google.common.primitives.Ints;
 
@@ -209,7 +212,7 @@ public class TestGuage {
 		
 	}
 	
-	@Test
+	//@Test
 	public void testUnmodifiableCollection(){
 		List<String> list = Lists.newArrayList();
 		list.add("peida");
@@ -235,5 +238,43 @@ public class TestGuage {
 		System.out.println("copyofset:" + copyofset);
 		System.out.println("ofset:" + ofset);
 	}
+	
+	@Test
+	public void testMutiSet() {
+		 String strWorld="wer|dfd|dd|dfd|dda|de|dr";
+	        Iterable<String> words= Splitter.on("|").split(strWorld);
+	        List<String> wordList=new ArrayList<String>();
+	        for (String word : words) {
+	            wordList.add(word);
+	        }
+	        Multiset<String> wordsMultiset = HashMultiset.create();
+	        wordsMultiset.addAll(wordList);
+	        
+	        for(String key:wordsMultiset.elementSet()){
+	            System.out.println(key+" count£º"+wordsMultiset.count(key));
+	        }
+	        if(!wordsMultiset.contains("peida")){
+	            wordsMultiset.add("peida", 2);
+	        }
+	        System.out.println("============================================");
+	        for(String key:wordsMultiset.elementSet()){
+	            System.out.println(key+" count£º"+wordsMultiset.count(key));
+	        }
+	        if(wordsMultiset.contains("peida")){
+	            wordsMultiset.setCount("peida", 23);
+	        }
+	        System.out.println("============================================");
+	        for(String key:wordsMultiset.elementSet()){
+	            System.out.println(key+" count£º"+wordsMultiset.count(key));
+	        }
+	        if(wordsMultiset.contains("peida")){
+	            wordsMultiset.setCount("peida", 23,45);
+	        }
+	        System.out.println("============================================");
+	        for(String key:wordsMultiset.elementSet()){
+	            System.out.println(key+" count£º"+wordsMultiset.count(key));
+	        }
+	}
+	
 	
 }
