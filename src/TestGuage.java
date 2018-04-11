@@ -17,6 +17,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Splitter;
 import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 import com.google.common.primitives.Ints;
@@ -177,7 +178,7 @@ public class TestGuage {
 
 	}
 	
-	@Test
+	//@Test
 	public void testCharMatcher() {
         String removeFromResult = CharMatcher.isNot('a').removeFrom("abacd");  
         System.out.println("removeForm:" + removeFromResult);  
@@ -206,6 +207,33 @@ public class TestGuage {
         boolean matchesAllOf = CharMatcher.anyOf("adddddbccc").matchesAllOf("adddddbccc");
         System.out.println("matchesAllOf:" + matchesAllOf);
 		
+	}
+	
+	@Test
+	public void testUnmodifiableCollection(){
+		List<String> list = Lists.newArrayList();
+		list.add("peida");
+		list.add("jerry");
+		list.add("harry");
+		list.add("eva");
+		list.add("jhon");
+		list.add("neron");
+		List<String> undifiableList = Collections.unmodifiableList(list);
+		ImmutableSet<String> immutableSet = ImmutableSet.<String>builder()
+	            .addAll(list)
+	            .add("matt")
+	            .build();
+		ImmutableSet<String> copyofset = ImmutableSet.copyOf(list);
+		ImmutableSet<List<String>> ofset = ImmutableSet.of(list);
+		System.out.println("undifiableList:" + undifiableList);
+		System.out.println("immutableSet:" + immutableSet);
+		System.out.println("copyofset:" + copyofset);
+		System.out.println("ofset:" + ofset);
+		list.add("1211");
+		System.out.println("undifiableList:" + undifiableList);
+		System.out.println("immutableSet:" + immutableSet);
+		System.out.println("copyofset:" + copyofset);
+		System.out.println("ofset:" + ofset);
 	}
 	
 }
