@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -19,10 +20,12 @@ import com.google.common.base.Throwables;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
 import com.google.common.collect.Ordering;
+import com.google.common.collect.PeekingIterator;
 import com.google.common.primitives.Ints;
 
 public class TestGuage {
@@ -239,7 +242,7 @@ public class TestGuage {
 		System.out.println("ofset:" + ofset);
 	}
 	
-	@Test
+	//@Test
 	public void testMutiSet() {
 		 String strWorld="wer|dfd|dd|dfd|dda|de|dr";
 	        Iterable<String> words= Splitter.on("|").split(strWorld);
@@ -276,5 +279,21 @@ public class TestGuage {
 	        }
 	}
 	
+	@Test
+	public void testIterator() {
+		 String strWorld="wer|dfd|dd|dfd|dda|de|dr";
+	        Iterable<String> words= Splitter.on("|").split(strWorld);
+	        List<String> result = Lists.newArrayList();  
+	        PeekingIterator<String> iter = Iterators.peekingIterator(words.iterator());  
+	        while (iter.hasNext()) {  
+	            String current = iter.next();  
+	            while (iter.hasNext() && iter.peek().equals(current)) {  
+	                //跳过重复的元素  
+	                iter.next();  
+	            }  
+	            result.add(current);  
+	        }  
+	        System.out.println(result);
+	}
 	
 }
