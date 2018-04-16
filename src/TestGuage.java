@@ -41,6 +41,7 @@ public class TestGuage {
         list.add(2);
         list.add(3);
         list.add(4);
+        list.add(4);
         Optional<List<Integer>> NoNullableList=Optional.fromNullable(list);
         if(possible.isPresent()){
             System.out.println("possible isPresent:"+possible.isPresent());
@@ -64,7 +65,7 @@ public class TestGuage {
         }
 	}
 	
-	//@Test
+	@Test
 	public void testTraditionalPreconditions() {
 		 int[] intArray = {1, 2, 3, 4, 5, 6};
 		 testPreconditions(true, intArray, 6);
@@ -279,7 +280,7 @@ public class TestGuage {
 	        }
 	}
 	
-	@Test
+	//@Test
 	public void testIterator() {
 		 String strWorld="wer|dfd|dd|dfd|dda|de|dr";
 	        Iterable<String> words= Splitter.on("|").split(strWorld);
