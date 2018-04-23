@@ -297,4 +297,9 @@ public class TestGuage {
 	        System.out.println(result);
 	}
 	
+	@Test
+	public void testToString() {
+		System.out.println(new People("",23));
+	}
+	
 }

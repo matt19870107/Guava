@@ -55,7 +55,7 @@ public class People{
     
     @Override
     public String toString() {
-    	return MoreObjects.toStringHelper(this).add("name", name).add("age", age).toString();
+    	return MoreObjects.toStringHelper(this).add("name", name).add("age", age).omitNullValues().toString();
     }
 }
  
