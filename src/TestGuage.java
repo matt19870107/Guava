@@ -65,7 +65,7 @@ public class TestGuage {
         }
 	}
 	
-	@Test
+	//@Test
 	public void testTraditionalPreconditions() {
 		 int[] intArray = {1, 2, 3, 4, 5, 6};
 		 testPreconditions(true, intArray, 6);
@@ -120,7 +120,7 @@ public class TestGuage {
 		System.out.println("byLengthOrdering:" + byLengthOrdering.sortedCopy(list));
 	}
 	
-	//@Test
+	@Test
 	public void testAdvanceOrdering() {
 		List<String> list = Lists.newArrayList();
 		list.add("peida");
@@ -164,7 +164,7 @@ public class TestGuage {
 				return String.valueOf(input.getAge());
 			}
 			});
-		System.out.println("naturalOrdering:" + naturalOrdering.nullsLast().reverse().sortedCopy(list));
+		System.out.println("naturalOrdering:" + naturalOrdering.reverse().nullsLast().sortedCopy(list));
 		System.out.println("compoundOrdering:" + compoundOrdering.sortedCopy(peopleList));
 		System.out.println("onResultOf:" + ordering.sortedCopy(peopleList));
 		System.out.println("greatestOf:" + ordering.reverse().greatestOf(peopleList, 3));
@@ -297,7 +297,7 @@ public class TestGuage {
 	        System.out.println(result);
 	}
 	
-	@Test
+	//@Test
 	public void testToString() {
 		System.out.println(new People("",23));
 	}
