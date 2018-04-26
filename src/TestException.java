@@ -39,8 +39,8 @@ public class TestException {
         try {
             f();
         } catch (ExceptionB e) {
-            ExceptionC c = new ExceptionC("exception a");
-            //“Ï≥£¡¨
+            ExceptionC c = new ExceptionC("exception c");
+            //exception chain
             c.initCause(e);
             throw c;
         }
