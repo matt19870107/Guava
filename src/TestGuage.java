@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Function;
+import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Splitter;
@@ -120,7 +121,7 @@ public class TestGuage {
 		System.out.println("byLengthOrdering:" + byLengthOrdering.sortedCopy(list));
 	}
 	
-	@Test
+	//@Test
 	public void testAdvanceOrdering() {
 		List<String> list = Lists.newArrayList();
 		list.add("peida");
@@ -300,6 +301,19 @@ public class TestGuage {
 	//@Test
 	public void testToString() {
 		System.out.println(new People("",23));
+	}
+	
+	@Test
+	public void testJoiner(){
+		List<String> list = Lists.newArrayList();
+		list.add("peida");
+		list.add("jerry");
+		list.add("harry");
+		list.add("eva");
+		list.add("jhon");
+		list.add("neron");
+		StringBuilder sb = new StringBuilder("result:");
+		System.out.println(Joiner.on(",").appendTo(sb, list));
 	}
 	
 }
