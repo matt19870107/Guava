@@ -174,16 +174,20 @@ public class TestGuage {
 		System.out.println("isStrictlyOrdered:" + naturalIntReduceOrdering.isStrictlyOrdered(listtest));
 	}
 	
-	//@Test
+	@Test
 	public void testSpliter(){
 		String  ss= ";a;;b;";
 		Iterable<String> s = Splitter.on(';')
         .trimResults()
-        .omitEmptyStrings()
         .limit(2)
+        .omitEmptyStrings()
         .split(ss);
 		System.out.println(s.toString());
-
+		String aa[] = ",a,,b,".split(",");
+		for(String str : aa) {
+			System.out.println("value:"+str);
+		}
+		
 	}
 	
 	//@Test
