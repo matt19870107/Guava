@@ -174,7 +174,7 @@ public class TestGuage {
 		System.out.println("isStrictlyOrdered:" + naturalIntReduceOrdering.isStrictlyOrdered(listtest));
 	}
 	
-	@Test
+	//@Test
 	public void testSpliter(){
 		String  ss= ";a;;b;";
 		Iterable<String> s = Splitter.on(';')
@@ -206,7 +206,7 @@ public class TestGuage {
         System.out.println("trimLeadingFrom:" + trimLeadingFromResult);  
         String trimTrailingFromResult = CharMatcher.anyOf("ab").trimTrailingFrom("abacatabb");  
         System.out.println("trimTrailingFrom:" + trimTrailingFromResult);  
-        String collapseFromResult = CharMatcher.anyOf("bre").collapseFrom("bookkeeper", '-');  
+        String collapseFromResult = CharMatcher.anyOf("bre").collapseFrom("bookkeeper", '-');
         System.out.println("collapseFrom:" + collapseFromResult);  
         String trimAndCollapseFromResult = CharMatcher.anyOf("bre").trimAndCollapseFrom("bookkeeper", '-');  
         System.out.println("trimAndCollapseFrom:" + trimAndCollapseFromResult);  
@@ -218,10 +218,12 @@ public class TestGuage {
         System.out.println("negate:" + negateResult);  
         boolean matchesAllOf = CharMatcher.anyOf("adddddbccc").matchesAllOf("adddddbccc");
         System.out.println("matchesAllOf:" + matchesAllOf);
+        boolean rangeResult = CharMatcher.inRange('a', 'c').matchesAllOf("abc");
+        System.out.println("rangeResult:" + rangeResult);  
 		
 	}
 	
-	//@Test
+	@Test
 	public void testUnmodifiableCollection(){
 		List<String> list = Lists.newArrayList();
 		list.add("peida");
@@ -242,6 +244,7 @@ public class TestGuage {
 		System.out.println("copyofset:" + copyofset);
 		System.out.println("ofset:" + ofset);
 		list.add("1211");
+		System.out.println("-----------after list modified------------");
 		System.out.println("undifiableList:" + undifiableList);
 		System.out.println("immutableSet:" + immutableSet);
 		System.out.println("copyofset:" + copyofset);
@@ -307,7 +310,7 @@ public class TestGuage {
 		System.out.println(new People("",23));
 	}
 	
-	@Test
+	//@Test
 	public void testJoiner(){
 		List<String> list = Lists.newArrayList();
 		list.add("peida");
