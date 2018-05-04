@@ -18,6 +18,10 @@ import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Splitter;
 import com.google.common.base.Throwables;
+import com.google.common.collect.BiMap;
+import com.google.common.collect.ClassToInstanceMap;
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.HashBiMap;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -25,8 +29,10 @@ import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multiset.Entry;
+import com.google.common.collect.MutableClassToInstanceMap;
 import com.google.common.collect.Ordering;
 import com.google.common.collect.PeekingIterator;
+import com.google.common.collect.Table;
 import com.google.common.primitives.Ints;
 
 public class TestGuage {
@@ -223,7 +229,7 @@ public class TestGuage {
 		
 	}
 	
-	@Test
+	//@Test
 	public void testUnmodifiableCollection(){
 		List<String> list = Lists.newArrayList();
 		list.add("peida");
@@ -251,7 +257,7 @@ public class TestGuage {
 		System.out.println("ofset:" + ofset);
 	}
 	
-	//@Test
+	@Test
 	public void testMutiSet() {
 		 String strWorld="wer|dfd|dd|dfd|dda|de|dr";
 	        Iterable<String> words= Splitter.on("|").split(strWorld);
@@ -263,28 +269,29 @@ public class TestGuage {
 	        wordsMultiset.addAll(wordList);
 	        
 	        for(String key:wordsMultiset.elementSet()){
-	            System.out.println(key+" count£º"+wordsMultiset.count(key));
+	            System.out.println(key+" count:"+wordsMultiset.count(key));
 	        }
 	        if(!wordsMultiset.contains("peida")){
-	            wordsMultiset.add("peida", 2);
+	            wordsMultiset.add("peida", 22);
 	        }
+	        wordsMultiset.remove("peida", 2);
 	        System.out.println("============================================");
 	        for(String key:wordsMultiset.elementSet()){
-	            System.out.println(key+" count£º"+wordsMultiset.count(key));
+	            System.out.println(key+" count:"+wordsMultiset.count(key));
 	        }
 	        if(wordsMultiset.contains("peida")){
 	            wordsMultiset.setCount("peida", 23);
 	        }
 	        System.out.println("============================================");
 	        for(String key:wordsMultiset.elementSet()){
-	            System.out.println(key+" count£º"+wordsMultiset.count(key));
+	            System.out.println(key+" count:"+wordsMultiset.count(key));
 	        }
 	        if(wordsMultiset.contains("peida")){
 	            wordsMultiset.setCount("peida", 23,45);
 	        }
 	        System.out.println("============================================");
 	        for(String key:wordsMultiset.elementSet()){
-	            System.out.println(key+" count£º"+wordsMultiset.count(key));
+	            System.out.println(key+" count:"+wordsMultiset.count(key));
 	        }
 	}
 	
@@ -322,5 +329,24 @@ public class TestGuage {
 		StringBuilder sb = new StringBuilder("result:");
 		System.out.println(Joiner.on(",").appendTo(sb, list));
 	}
+	
+	//@Test
+	public void testBimap(){
+		BiMap<String, Integer> userId = HashBiMap.create();
+		userId.put("matt", 28);
+		userId.put("matt1", 29);
+		System.out.println(userId.inverse().get(28));
+	}
+	
+	//@Test
+	public void testTable(){
+		Table<String, String, Integer> weightedGraph = HashBasedTable.create();
+		weightedGraph.put("v1", "v2",  4);
+		weightedGraph.put("v1", "v3", 20);
+		weightedGraph.put("v2", "v3", 5);
+		System.out.println(weightedGraph.row("v1"));
+
+	}
+	
 	
 }
