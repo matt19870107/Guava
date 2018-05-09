@@ -317,7 +317,7 @@ public class TestGuage {
 		System.out.println(new People("",23));
 	}
 	
-	//@Test
+	@Test
 	public void testJoiner(){
 		List<String> list = Lists.newArrayList();
 		list.add("peida");
@@ -328,6 +328,7 @@ public class TestGuage {
 		list.add("neron");
 		StringBuilder sb = new StringBuilder("result:");
 		System.out.println(Joiner.on(",").appendTo(sb, list));
+		System.out.println(Joiner.on(";").join(Arrays.asList(1, 5, 7)));
 	}
 	
 	//@Test
