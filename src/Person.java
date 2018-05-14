@@ -27,6 +27,5 @@ class Foo {
     final ImmutableSet<Person> immutablePersons;
     Foo(Set<Person> persons) {
       this.immutablePersons = ImmutableSet.copyOf(persons);
-      // 保护性拷贝，使集合immutablePersons不可被删除增加元素，但是可以调用元素自身的方法进行元素的修改
     }
 }
